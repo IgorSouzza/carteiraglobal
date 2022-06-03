@@ -1,8 +1,10 @@
 import Header from '../../components/Header'
 
+import * as S from './styles'
+
 export default function Dashboard () {
   return (
-    <div>
+    <div className={S.wrapper}>
       <Header />
     </div>
   )
