@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> should render correctly 1`] = `
+<div
+  class="flex items-end"
+>
+  <img
+    alt="Logo Planejador de Poupança"
+    src="img/logo.png"
+  />
+  <h1
+    class="font-semibold text-base ml-3.5"
+  >
+    Planejador de Poupança
+  </h1>
+</div>
+`;
