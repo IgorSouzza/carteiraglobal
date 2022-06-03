@@ -1,8 +1,8 @@
 import { tc } from '../../utils'
 
 export const wrapper = tc(`
-  container
-  mx-auto
-  mt-8
-  px-5
+  grid
+  grid-cols-2
+  gap-5
+  lg:grid-cols-4
 `)
