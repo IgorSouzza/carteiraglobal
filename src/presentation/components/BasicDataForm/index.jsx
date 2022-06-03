@@ -1,5 +1,6 @@
-import TextField from '../TextField'
 import * as S from './styles'
+
+import TextField from '../TextField'
 
 export default function BasicDataForm () {
   return (
