@@ -15,4 +15,14 @@ describe('LocalCalculateCompoundInterest', () => {
 
     expect(compoundInterest).toBe('43178.50')
   })
+
+  it('should return an Error if some field is missing', () => {
+    const initialInvestment = 20000
+    const time = 120
+    const sut = new LocalCalculateCompoundInterest()
+
+    expect(() => {
+      sut.calculate({ initialInvestment, time })
+    }).toThrowError('All fields is required')
+  })
 })
