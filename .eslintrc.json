@@ -20,6 +20,7 @@
     "react"
   ],
   "rules": {
-    "no-useless-constructor": "off"
+    "no-useless-constructor": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }

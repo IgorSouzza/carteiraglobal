@@ -1,6 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
 
+import Dashboard from '../presentation/templates/Dashboard'
+
 export default function Home () {
   return (
     <div>
@@ -10,7 +12,7 @@ export default function Home () {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Carteira Global - Challenge</h1>
+        <Dashboard />
       </main>
     </div>
   )
