@@ -12,6 +12,15 @@ module.exports = {
         mono: ['Epilogue', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         display: ['Epilogue', '-apple-system', 'BlinkMacSystemFont'],
         body: ['Epilogue', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+      },
+      colors: {
+        'carteira-global-black': '#0A0D0D',
+        'carteira-global-green': '#09B682',
+        'carteira-global-purple': '#7B1CF3',
+        'carteira-global-blue': '#21A3ED'
+      },
+      boxShadow: {
+        'carteira-card': '0px 0px 20px rgba(10, 13, 13, 0.12)'
       }
     }
   },
