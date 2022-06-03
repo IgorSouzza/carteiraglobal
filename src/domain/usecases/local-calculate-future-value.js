@@ -2,6 +2,10 @@ export class LocalCalculateFutureValue {
   constructor () {}
 
   calculate ({ installmentValue, time, interestRate }) {
+    if (!installmentValue || !time || !interestRate) {
+      throw new Error('All fields is required')
+    }
+
     const equivalentRate =
       ((Math.pow(1 + interestRate / 100, 1 / 12) - 1) * 100) / 100
 
