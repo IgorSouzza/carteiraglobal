@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> should render correctly with children and title 1`] = `
+<div
+  class="rounded w-full bg-white p-5 shadow-carteira-card "
+>
+  <h2
+    class="text-sm font-semibold text-carteira-global-green"
+  >
+    Card Title
+  </h2>
+  <div
+    class="mt-8"
+  >
+    <p>
+      Card Children Text
+    </p>
+  </div>
+</div>
+`;
