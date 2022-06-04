@@ -43,7 +43,7 @@ export default function TextField ({
         <NumberFormat
           id={labelFor}
           className={S.input}
-          onChange={onInput}
+          onValueChange={onInput}
           placeholder={placeholder}
           allowNegative={false}
           {...maskProps[maskType]}
