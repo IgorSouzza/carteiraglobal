@@ -7,7 +7,8 @@ const makeSut = ({
   label,
   labelFor,
   message,
-  onChange
+  onChange,
+  maskType
 }) => {
   render(
     <TextField
@@ -15,6 +16,7 @@ const makeSut = ({
       labelFor={labelFor}
       message={message}
       onInput={onChange}
+      maskType={maskType}
     />
   )
 }
@@ -48,5 +50,41 @@ describe('<TextField />', () => {
 
     expect(input).toHaveValue(text)
     expect(onChange).toHaveBeenCalledTimes(text.length)
+  })
+
+  it('should add currency mask to input', async () => {
+    const onChange = jest.fn()
+    makeSut({
+      label: 'Investimento inicial',
+      labelFor: 'field',
+      onChange,
+      maskType: 'currency'
+    })
+
+    const input = screen.getByLabelText(/investimento inicial/i)
+    const text = '500'
+    await userEvent.type(input, text)
+
+    await waitFor(() => input.nodeValue)
+
+    expect(input).toHaveValue(`R$ ${text},00`)
+  })
+
+  it('should add percentage mask to input', async () => {
+    const onChange = jest.fn()
+    makeSut({
+      label: 'Investimento inicial',
+      labelFor: 'field',
+      onChange,
+      maskType: 'percentage'
+    })
+
+    const input = screen.getByLabelText(/investimento inicial/i)
+    const text = '10'
+    await userEvent.type(input, text)
+
+    await waitFor(() => input.nodeValue)
+
+    expect(input).toHaveValue(`${text}%`)
   })
 })
