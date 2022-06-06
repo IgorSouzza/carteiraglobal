@@ -19,7 +19,7 @@ export function makeOptions (data = []) {
       plotBorderWidth: null,
       plotShadow: false,
       type: 'pie',
-      height: '100%'
+      height: '281px'
     },
     title: {
       text: `<div id="chart-portal-wrapper" class="${chartPortal}"></div>`,
