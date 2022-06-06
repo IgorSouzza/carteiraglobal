@@ -41,6 +41,22 @@ export function makeOptions (data = []) {
       series: {
         showInNavigator: true,
         pointStart: 1,
+        point: {
+          events: {
+            mouseOver: function () {
+              this.series.xAxis.addPlotLine({
+                color: '#C4C4C4',
+                dashStyle: 'LongDash',
+                width: 1,
+                value: this.x,
+                id: 'lineGuide'
+              })
+            },
+            mouseOut: function () {
+              this.series.xAxis.removePlotLine('lineGuide')
+            }
+          }
+        },
         states: {
           hover: {
             halo: null
