@@ -10,10 +10,10 @@ import Legend from './Legend'
 
 export default function AccumulatedValue () {
   const data = [
-    { name: 'Investimento Mensal Acumulado', value: 'R$ 120.000,00', y: 53.73, sliced: true, selected: true, color: '#21A3ED' },
+    { name: 'Investimento Inicial', value: 'R$ 20.000,00', y: 8.96, sliced: true, selected: true, color: '#7B1CF3' },
     { name: 'Juros', value: 'R$ 83.302,77', y: 37.30, sliced: true, selected: true, color: '#09B682' },
-    { name: 'Investimento Inicial', value: 'R$ 20.000,00', y: 8.96, sliced: true, selected: true, color: '#7B1CF3' }
-  ]
+    { name: 'Investimento Mensal Acumulado', value: 'R$ 120.000,00', y: 53.73, sliced: true, selected: true, color: '#21A3ED' }
+  ].sort((a, b) => b.y - a.y)
 
   return (
     <>
