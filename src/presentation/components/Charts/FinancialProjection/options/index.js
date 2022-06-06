@@ -35,7 +35,8 @@ export function makeOptions (data = []) {
       layout: 'horizontal',
       align: 'center',
       verticalAlign: 'bottom',
-      labelFormat: 'Valor {name}'
+      labelFormat: 'Valor {name}',
+      itemStyle: { fontWeight: 'normal' }
     },
     plotOptions: {
       series: {
