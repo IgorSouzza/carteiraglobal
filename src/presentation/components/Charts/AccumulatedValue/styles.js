@@ -2,8 +2,8 @@ import { tc } from '../../../utils'
 
 export const chartPortal = tc(`
   absolute
-  top-[23px]
-  left-[-122px]
+  top-[29px]
+  left-[-109px]
 
   lg:top-[28px]
   lg:left-[-109px]

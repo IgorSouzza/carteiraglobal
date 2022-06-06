@@ -5,7 +5,7 @@ export const wrapper = ({ circleVariant }) => tc(`
   bg-white
   shadow-carteira-card
 
-  ${circleVariant ? 'rounded-full p-14 lg:p-11' : 'rounded p-5'}
+  ${circleVariant ? 'rounded-full p-11 lg:p-11' : 'rounded p-5'}
 `)
 
 export const title = tc(`
