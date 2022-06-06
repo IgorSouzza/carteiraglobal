@@ -4,6 +4,7 @@ import Card from '../../components/Card'
 import Header from '../../components/Header'
 import BasicDataForm from '../../components/BasicDataForm'
 import AccumulatedValue from '../../components/AccumulatedValue'
+import FinancialProjection from '../../components/FinancialProjection'
 
 export default function Dashboard () {
   return (
@@ -17,6 +18,9 @@ export default function Dashboard () {
       <div className={S.resultsContainer}>
         <Card title="Participação no Valor Acumulado:">
           <AccumulatedValue />
+        </Card>
+        <Card title="Projeção Financeira:">
+          <FinancialProjection />
         </Card>
       </div>
     </div>
