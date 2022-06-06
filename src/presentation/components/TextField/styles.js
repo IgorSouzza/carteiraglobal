@@ -18,7 +18,6 @@ export const input = tc(`
   bg-carteira-global-gray
   rounded
   border
-  border-carteira-global-gray-medium
   pl-5
   pt-4
   pb-3
