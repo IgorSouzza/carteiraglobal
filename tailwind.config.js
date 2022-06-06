@@ -22,11 +22,15 @@ module.exports = {
         'carteira-global-purple': '#7B1CF3',
         'carteira-global-blue': '#21A3ED',
         'carteira-global-gray': '#FCFCFC',
-        'carteira-global-gray-medium': '#ECECEC',
+        'carteira-global-gray-light': '#ECECEC',
+        'carteira-global-gray-medium': '#8C979F',
         'carteira-global-gray-dark': '#343A3A'
       },
       boxShadow: {
         'carteira-card': '0px 0px 20px rgba(10, 13, 13, 0.12)'
+      },
+      gridTemplateColumns: {
+        'result-area': '1fr 2fr'
       }
     }
   },
