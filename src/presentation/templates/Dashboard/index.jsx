@@ -3,8 +3,8 @@ import * as S from './styles'
 import Card from '../../components/Card'
 import Header from '../../components/Header'
 import BasicDataForm from '../../components/BasicDataForm'
-import AccumulatedValue from '../../components/AccumulatedValue'
-import FinancialProjection from '../../components/FinancialProjection'
+import AccumulatedValue from '../../components/Charts/AccumulatedValue'
+import FinancialProjection from '../../components/Charts/FinancialProjection'
 
 export default function Dashboard () {
   return (

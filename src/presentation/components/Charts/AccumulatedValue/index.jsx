@@ -4,8 +4,8 @@ import HighchartsReact from 'highcharts-react-official'
 import * as S from './styles'
 import { makeOptions } from './options'
 
-import Card from '../Card'
-import Portal from '../Portal'
+import Card from '../../Card'
+import Portal from '../../Portal'
 import Legend from './Legend'
 
 export default function AccumulatedValue () {

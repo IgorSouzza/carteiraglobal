@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import AccumulatedValue from '../../../src/presentation/components/AccumulatedValue'
+
+import AccumulatedValue from '../../../../src/presentation/components/Charts/AccumulatedValue'
 
 const makeSut = () => {
   render(<AccumulatedValue />)

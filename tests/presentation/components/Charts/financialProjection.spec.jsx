@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import FinancialProjection from '../../../src/presentation/components/FinancialProjection'
+
+import FinancialProjection from '../../../../src/presentation/components/Charts/FinancialProjection'
 
 const makeSut = () => {
   render(<FinancialProjection />)

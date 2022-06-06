@@ -1,4 +1,4 @@
-import { tc } from '../../../utils'
+import { tc } from '../../../../utils'
 
 export const wrapper = tc(`
   flex
