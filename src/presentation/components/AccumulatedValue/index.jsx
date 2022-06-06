@@ -17,7 +17,9 @@ export default function AccumulatedValue () {
 
   return (
     <>
-      <HighchartsReact highcharts={Highcharts} options={makeOptions(data)} />
+      <div data-testid="chart-container">
+        <HighchartsReact highcharts={Highcharts} options={makeOptions(data)} />
+      </div>
       <Portal wrapperId="chart-portal-wrapper">
         <Card customClass={S.card} circleVariant>
           <div className={S.accumulatedContainer}>
@@ -30,7 +32,7 @@ export default function AccumulatedValue () {
           </div>
         </Card>
       </Portal>
-      <div className={S.legendContainer}>
+      <div className={S.legendContainer} data-testid="legend-container">
         {data.map((item) => (
           <Legend
             key={item.name}
