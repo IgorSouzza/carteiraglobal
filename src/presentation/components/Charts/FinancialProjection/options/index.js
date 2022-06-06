@@ -24,6 +24,9 @@ export function makeOptions (data = []) {
       }
     },
     yAxis: {
+      labels: {
+        enabled: false
+      },
       title: {
         text: ''
       }
