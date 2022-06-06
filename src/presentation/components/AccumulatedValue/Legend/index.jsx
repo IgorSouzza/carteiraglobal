@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types'
 
+import * as S from './styles'
+
 export default function Legend ({ color, title, value, percentage }) {
   return (
-    <div className="flex items-center justify-between mb-4 last:mb-0">
-      <div className="flex items-center">
-        <div className="w-2.5 h-2.5 rounded-sm mr-4" style={{ background: color }} />
+    <div className={S.wrapper}>
+      <div className={S.titleContainer}>
+        <div className={S.coloredSquare} style={{ background: color }} />
         <div>
-          <h3 className="text-xs text-carteira-global-black">{title}</h3>
-          <span className="text-xs text-carteira-global-gray-medium">{value}</span>
+          <h3 className={S.title}>{title}</h3>
+          <span className={S.value}>{value}</span>
         </div>
       </div>
-      <span className="text-xs text-carteira-global-black">{percentage}%</span>
+      <span className={S.percetage}>{percentage}%</span>
     </div>
   )
 }
