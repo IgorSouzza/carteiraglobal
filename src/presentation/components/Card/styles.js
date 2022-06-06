@@ -1,11 +1,11 @@
 import { tc } from '../../utils'
 
-export const wrapper = tc(`
-  rounded
+export const wrapper = ({ circleVariant }) => tc(`
   w-full
   bg-white
-  p-5
   shadow-carteira-card
+
+  ${circleVariant ? 'rounded-full p-14 lg:p-11' : 'rounded p-5'}
 `)
 
 export const title = tc(`

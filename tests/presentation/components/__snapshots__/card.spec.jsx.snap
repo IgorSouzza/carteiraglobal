@@ -2,7 +2,7 @@
 
 exports[`<Card /> should render correctly with children and title 1`] = `
 <div
-  class="rounded w-full bg-white p-5 shadow-carteira-card "
+  class="w-full bg-white shadow-carteira-card rounded p-5 "
 >
   <h2
     class="text-sm font-semibold text-carteira-global-green"
