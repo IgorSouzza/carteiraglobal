@@ -1,21 +1,40 @@
 import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 import * as S from './styles'
 
 import TextField from '../TextField'
 
-export default function BasicDataForm () {
+export default function BasicDataForm ({ getAccumulatedValue }) {
   const [initialInvestment, setInitialInvestment] = useState()
   const [installmentValue, setInstallmentValue] = useState()
   const [time, setTime] = useState()
   const [interestRate, setInterestRate] = useState()
 
-  function handleSubmit () {
+  async function handleSubmit () {
     if (!initialInvestment || !installmentValue || !time || !interestRate) {
       return
     }
 
-    console.log('submit!')
+    const response = await getAccumulatedValue.load({
+      query: `
+      query AccummulatedValue {
+        getAccumulatedValue(
+          initialInvestment: 100
+          installmentValue: 100
+          time: 12
+          interestRate: 8
+        ) {
+          futureValue
+          compoundInterest
+          initialInvestment
+          interest
+          total
+        }
+      }
+    `
+    })
+    console.log(response)
   }
 
   useEffect(() => {
@@ -58,4 +77,8 @@ export default function BasicDataForm () {
       />
     </form>
   )
+}
+
+BasicDataForm.propTypes = {
+  getAccumulatedValue: PropTypes.object
 }
