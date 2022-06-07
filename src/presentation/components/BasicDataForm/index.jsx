@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
+import { useAccumulatedvalue } from '../../context'
 import { makeAccumulatedValueQuery } from '../../queries'
 
 import * as S from './styles'
@@ -12,6 +13,7 @@ export default function BasicDataForm ({ getAccumulatedValue }) {
   const [installmentValue, setInstallmentValue] = useState()
   const [time, setTime] = useState()
   const [interestRate, setInterestRate] = useState()
+  const { handleSetAccumulatedValue } = useAccumulatedvalue()
 
   async function handleSubmit () {
     if (!initialInvestment || !installmentValue || !time || !interestRate) {
@@ -27,7 +29,7 @@ export default function BasicDataForm ({ getAccumulatedValue }) {
       })
     })
 
-    console.log(response)
+    handleSetAccumulatedValue(response.getAccumulatedValue)
   }
 
   useEffect(() => {

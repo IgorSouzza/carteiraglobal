@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 
+import { useAccumulatedvalue } from '../../context'
+
 import * as S from './styles'
 
 import Card from '../../components/Card'
@@ -9,6 +11,8 @@ import AccumulatedValue from '../../components/Charts/AccumulatedValue'
 import FinancialProjection from '../../components/Charts/FinancialProjection'
 
 export default function Dashboard ({ getAccumulatedValue }) {
+  const { accumulatedValue } = useAccumulatedvalue()
+
   return (
     <div className={S.wrapper}>
       <Header />
@@ -19,7 +23,7 @@ export default function Dashboard ({ getAccumulatedValue }) {
       </div>
       <div className={S.resultsContainer}>
         <Card title="Participação no Valor Acumulado:">
-          <AccumulatedValue />
+          <AccumulatedValue accumulatedValue={accumulatedValue} />
         </Card>
         <Card title="Projeção Financeira:">
           <FinancialProjection />

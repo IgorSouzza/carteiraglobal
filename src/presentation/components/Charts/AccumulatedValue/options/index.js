@@ -9,6 +9,8 @@ export function makeOptions (data = []) {
   const dataWithInvisibleObjects = []
 
   for (const dataItem of data) {
+    dataItem.sliced = true
+    dataItem.selected = true
     dataWithInvisibleObjects.push(dataItem)
     dataWithInvisibleObjects.push({ visible: false, y: 2.5 })
   }
@@ -27,8 +29,7 @@ export function makeOptions (data = []) {
       floating: true
     },
     tooltip: {
-      outside: true,
-      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      enabled: false
     },
     accessibility: {
       point: {
@@ -37,7 +38,6 @@ export function makeOptions (data = []) {
     },
     plotOptions: {
       pie: {
-        cursor: 'pointer',
         colors: data.map((item) => item.color),
         dataLabels: {
           enabled: false

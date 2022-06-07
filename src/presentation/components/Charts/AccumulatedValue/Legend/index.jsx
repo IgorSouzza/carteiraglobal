@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 import * as S from './styles'
 
-export default function Legend ({ color, title, value, percentage }) {
+export default function Legend ({ color, title, value, percent }) {
   return (
     <div className={S.wrapper}>
       <div className={S.titleContainer}>
@@ -12,7 +12,7 @@ export default function Legend ({ color, title, value, percentage }) {
           <span className={S.value}>{value}</span>
         </div>
       </div>
-      <span className={S.percetage}>{percentage}%</span>
+      <span className={S.percetage}>{percent}</span>
     </div>
   )
 }
@@ -21,5 +21,5 @@ Legend.propTypes = {
   color: PropTypes.string,
   title: PropTypes.string,
   value: PropTypes.string,
-  percentage: PropTypes.number
+  percent: PropTypes.string
 }
