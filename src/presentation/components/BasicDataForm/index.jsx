@@ -20,16 +20,19 @@ export default function BasicDataForm ({ getAccumulatedValue }) {
       return
     }
 
-    const response = await getAccumulatedValue.load({
-      query: makeAccumulatedValueQuery({
-        initialInvestment,
-        installmentValue,
-        time,
-        interestRate
+    try {
+      const response = await getAccumulatedValue.load({
+        query: makeAccumulatedValueQuery({
+          initialInvestment,
+          installmentValue,
+          time,
+          interestRate
+        })
       })
-    })
-
-    handleSetAccumulatedValue(response.getAccumulatedValue)
+      handleSetAccumulatedValue(response.getAccumulatedValue)
+    } catch (error) {
+      throw new Error(error)
+    }
   }
 
   useEffect(() => {
