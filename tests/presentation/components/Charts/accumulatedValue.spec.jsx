@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react'
 
+import { accumulatedValueMock } from '../../mocks'
+
 import AccumulatedValue from '../../../../src/presentation/components/Charts/AccumulatedValue'
 
 const makeSut = () => {
-  render(<AccumulatedValue />)
+  render(<AccumulatedValue accumulatedValue={accumulatedValueMock} />)
 }
 
 describe('<AccumulatedValue />', () => {
