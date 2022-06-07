@@ -2,15 +2,15 @@ import { tc } from '../../../utils'
 
 export const chartPortal = tc(`
   absolute
-  top-[29px]
+  top-[23px]
   left-[-109px]
-
-  lg:top-[28px]
-  lg:left-[-109px]
 `)
 
 export const card = tc(`
-  w-fit
+  w-[216px]
+  h-[216px]
+  max-w-[216px]
+  max-h-[216px]
   mx-auto
 `)
 
