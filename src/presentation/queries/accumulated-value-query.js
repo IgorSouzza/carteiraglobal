@@ -12,9 +12,20 @@ export const makeAccumulatedValueQuery = ({
       interestRate: ${interestRate}
     ) {
       futureValue
+      saved
       compoundInterest
-      initialInvestment
-      interest
+      monthlyAccumulated {
+        value
+        percent
+      }
+      initialInvestment {
+        value
+        percent
+      }
+      interest {
+        value
+        percent
+      }
       total
     }
   }

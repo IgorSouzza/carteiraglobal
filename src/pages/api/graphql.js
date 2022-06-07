@@ -4,11 +4,18 @@ import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-co
 import { getAccumulatedValueQuery } from './resolvers'
 
 const typeDefs = gql`
+  type WithPercent {
+    value: String!
+    percent: Float!
+  }
+
   type AccumulatedValue {
     futureValue: String!
+    saved: String!
     compoundInterest: String!
-    interest: String!
-    initialInvestment: String!
+    interest: WithPercent!
+    initialInvestment: WithPercent!
+    monthlyAccumulated: WithPercent!
     total: String!
   }
 

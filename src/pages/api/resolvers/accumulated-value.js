@@ -11,6 +11,7 @@ export const getAccumulatedValueQuery = {
     const calculateInterest = makeLocalCalculateInterest()
 
     const { initialInvestment, installmentValue, time, interestRate } = args
+    const monthlyAccumulated = installmentValue * time
 
     const compoundInterest = calculateCompoundInterest.calculate({
       initialInvestment,
@@ -33,11 +34,27 @@ export const getAccumulatedValueQuery = {
       time
     })
 
+    const interestPercent = (interest / total) * 100
+    const initialInvestmentPercent = (initialInvestment / total) * 100
+    const monthlyAccumulatedPercent = (monthlyAccumulated / total) * 100
+    const saved = (total - interest).toFixed(2).toString()
+
     return {
       futureValue,
       compoundInterest,
-      initialInvestment: initialInvestment.toFixed(2).toString(),
-      interest,
+      saved,
+      monthlyAccumulated: {
+        value: monthlyAccumulated,
+        percent: monthlyAccumulatedPercent
+      },
+      initialInvestment: {
+        value: initialInvestment.toFixed(2).toString(),
+        percent: initialInvestmentPercent
+      },
+      interest: {
+        value: interest,
+        percent: interestPercent
+      },
       total: total.toString()
     }
   }
