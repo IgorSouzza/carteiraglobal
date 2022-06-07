@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
+import { makeAccumulatedValueQuery } from '../../queries'
+
 import * as S from './styles'
 
 import TextField from '../TextField'
@@ -17,23 +19,14 @@ export default function BasicDataForm ({ getAccumulatedValue }) {
     }
 
     const response = await getAccumulatedValue.load({
-      query: `
-      query AccummulatedValue {
-        getAccumulatedValue(
-          initialInvestment: 100
-          installmentValue: 100
-          time: 12
-          interestRate: 8
-        ) {
-          futureValue
-          compoundInterest
-          initialInvestment
-          interest
-          total
-        }
-      }
-    `
+      query: makeAccumulatedValueQuery({
+        initialInvestment,
+        installmentValue,
+        time,
+        interestRate
+      })
     })
+
     console.log(response)
   }
 
