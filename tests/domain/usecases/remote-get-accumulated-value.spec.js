@@ -1,4 +1,4 @@
-import { RemoteGetAccumulatedValue } from '../../../src/data/usecases'
+import { RemoteGetAccumulatedValue } from '../../../src/domain/usecases'
 
 import { HttpClientSpy } from '../mocks'
 

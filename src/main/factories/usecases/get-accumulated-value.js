@@ -1,4 +1,4 @@
-import { RemoteGetAccumulatedValue } from '../../../data/usecases'
+import { RemoteGetAccumulatedValue } from '../../../domain/usecases'
 import { makeApiUrl, makeApolloAdapter } from '../http'
 
 /**
