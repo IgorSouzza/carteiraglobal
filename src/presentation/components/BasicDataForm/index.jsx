@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { useAccumulatedvalue } from '../../context'
-import { makeAccumulatedValueQuery } from '../../queries'
 
 import * as S from './styles'
 
@@ -22,12 +21,10 @@ export default function BasicDataForm ({ getAccumulatedValue }) {
 
     try {
       const response = await getAccumulatedValue.load({
-        query: makeAccumulatedValueQuery({
-          initialInvestment,
-          installmentValue,
-          time,
-          interestRate
-        })
+        initialInvestment,
+        installmentValue,
+        time,
+        interestRate
       })
       handleSetAccumulatedValue(response.getAccumulatedValue)
     } catch (error) {

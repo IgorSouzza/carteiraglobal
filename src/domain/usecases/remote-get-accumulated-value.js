@@ -1,3 +1,5 @@
+import { makeAccumulatedValueQuery } from '../queries'
+
 /** Class responsable to get and return information from HttpClient */
 export class RemoteGetAccumulatedValue {
   url = ''
@@ -14,15 +16,18 @@ export class RemoteGetAccumulatedValue {
   }
 
   /**
-   * Make a request to some URL
-   * @param {Object} data - Data to be sent to the API
-   * @param {string} data.query - GraphQL Query
+   * Call Adapter and returns API body
+   * @param {Object} params - Params to be sent to the API
+   * @param {number} params.installmentValue - The amount that is added monthly
+   * @param {number} params.installmentValue - Initial investment
+   * @param {number} params.time - Time in months
+   * @param {number} params.interestRate - Interest rate
    * @returns {any}
    */
-  async load (data) {
+  async load (params) {
     const httpResponse = await this.httpClient.request({
       url: this.url,
-      query: data.query
+      query: makeAccumulatedValueQuery(params)
     })
 
     return httpResponse.body

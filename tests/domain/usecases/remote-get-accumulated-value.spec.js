@@ -2,12 +2,20 @@ import { RemoteGetAccumulatedValue } from '../../../src/domain/usecases'
 
 import { HttpClientSpy } from '../mocks'
 
+jest.mock('../../../src/domain/queries/accumulated-value-query', () => {
+  return {
+    makeAccumulatedValueQuery: () => 'any_query'
+  }
+})
+
 describe('RemoteGetAccumulatedValue', () => {
   it('should call HttpClient with correct url and query', () => {
     const httpClientSpy = new HttpClientSpy()
     const sut = new RemoteGetAccumulatedValue('/any_url', httpClientSpy)
 
-    sut.load({ query: 'any_query' })
+    const params = {}
+
+    sut.load(params)
 
     expect(httpClientSpy.url).toBe('/any_url')
     expect(httpClientSpy.query).toBe('any_query')
