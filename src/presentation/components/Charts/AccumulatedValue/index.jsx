@@ -28,6 +28,11 @@ export default function AccumulatedValue ({ accumulatedValue }) {
         </Card>
       </Portal>
       <div className={S.legendContainer} data-testid="legend-container">
+        {!accumulatedValue.data.length && (
+          <p className={S.noData}>
+            Sem dados para mostrar
+          </p>
+        )}
         {accumulatedValue.data.map((item) => (
           <Legend
             key={item.name}

@@ -49,3 +49,9 @@ export const savedValue = tc(`
 export const legendContainer = tc(`
   mt-9
 `)
+
+export const noData = tc(`
+  text-xs
+  text-center
+  text-carteira-global-gray-medium
+`)
