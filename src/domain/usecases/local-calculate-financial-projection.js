@@ -1,3 +1,6 @@
+/** Class responsable to contain methods to create
+ *  a array of data with values from month to month
+ */
 export class LocalCalculateFinancialProjection {
   interestCalculator = null
   futureValueCalculator = null
@@ -5,6 +8,11 @@ export class LocalCalculateFinancialProjection {
   invested = []
   acummulated = []
 
+  /**
+   * @param {LocalCalculateInterest} interestCalculator
+   * @param {LocalCalculateFutureValue} futureValueCalculator
+   * @param {LocalCalculateCompoundInterest} compoundInterestCalculator
+   */
   constructor (
     interestCalculator,
     futureValueCalculator,
@@ -15,6 +23,15 @@ export class LocalCalculateFinancialProjection {
     this.compoundInterestCalculator = compoundInterestCalculator
   }
 
+  /**
+   *
+   * @param {Object} props - Properties to create Financial Projection
+   * @param {number} props.time - Time in months
+   * @param {number} props.initialInvestment - Initial Investment
+   * @param {number} props.installmentValue - The amount that is added monthly
+   * @param {number} props.interestRate - Interest rate
+   * @returns {number}
+   */
   calculate ({ time, initialInvestment, installmentValue, interestRate }) {
     if (
       typeof time === 'undefined' ||
@@ -46,6 +63,16 @@ export class LocalCalculateFinancialProjection {
     ]
   }
 
+  /**
+   * PRIVATE HELPER METHOD
+   * @param {Object} props - Properties to create a Accumulated data array
+   * @param {number} props.invested - Value in current month
+   * @param {number} props.currentMonth - Current month
+   * @param {number} props.initialInvestment - Initial Investment
+   * @param {number} props.installmentValue - The amount that is added monthly
+   * @param {number} props.interestRate - Interest rate
+   * @returns {number}
+   */
   #calculateAccumulated ({
     invested,
     currentMonth,
