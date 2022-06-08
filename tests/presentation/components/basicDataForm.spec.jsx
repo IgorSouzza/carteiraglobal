@@ -11,8 +11,27 @@ jest.mock('../../../src/presentation/context/accumulated-value-context', () => {
   }
 })
 
-const makeSut = (getAccumulatedValue = { load: jest.fn() }) => {
-  render(<BasicDataForm getAccumulatedValue={getAccumulatedValue} />)
+const mockHandleSetFinancialProjection = jest.fn()
+jest.mock('../../../src/presentation/context/financial-projection-context', () => {
+  return {
+    useFinancialProjection: () => ({
+      handleSetFinancialProjection: mockHandleSetFinancialProjection
+    })
+  }
+})
+
+const makeSut = ({
+  getAccumulatedValue = { load: jest.fn() },
+  getFinancialProjection = { load: jest.fn() }
+}) => {
+  render(
+    <BasicDataForm
+      getAccumulatedValue={getAccumulatedValue}
+      getFinancialProjection={getFinancialProjection}
+    />
+  )
+
+  return { getAccumulatedValue, getFinancialProjection }
 }
 
 describe('<BasicDataForm />', () => {
@@ -21,7 +40,7 @@ describe('<BasicDataForm />', () => {
   })
 
   it('should render correctly all inputs', () => {
-    makeSut()
+    makeSut({})
 
     const initialInvestmentInput = screen.getByLabelText(/investimento inicial/i)
     const installmentValueInput = screen.getByLabelText(/valor da parcela/i)
@@ -34,9 +53,10 @@ describe('<BasicDataForm />', () => {
     expect(interestRateInput).toBeInTheDocument()
   })
 
-  it('should not call getAccumulatedValue when some field is not filled', async () => {
-    const getAccumulatedValueMock = { load: jest.fn() }
-    makeSut(getAccumulatedValueMock)
+  it('should not call getAccumulatedValue and getFinancialProjection when some field is not filled', async () => {
+    const getAccumulatedValue = { load: jest.fn() }
+    const getFinancialProjection = { load: jest.fn() }
+    makeSut({ getAccumulatedValue, getFinancialProjection })
 
     const initialInvestmentInput = screen.getByLabelText(/investimento inicial/i)
     const installmentValueInput = screen.getByLabelText(/valor da parcela/i)
@@ -49,15 +69,20 @@ describe('<BasicDataForm />', () => {
     await waitFor(() => installmentValueInput)
     await waitFor(() => timeInput)
 
-    expect(getAccumulatedValueMock.load).not.toHaveBeenCalled()
+    expect(getAccumulatedValue.load).not.toHaveBeenCalled()
+    expect(getFinancialProjection.load).not.toHaveBeenCalled()
     expect(mockHandleSetAccumulatedValue).not.toHaveBeenCalled()
+    expect(mockHandleSetFinancialProjection).not.toHaveBeenCalled()
   })
 
-  it('should call getAccumulatedValue when all fields is filled', async () => {
-    const getAccumulatedValueMock = {
+  it('should call getAccumulatedValue and getFinancialProjection when all fields is filled', async () => {
+    const getAccumulatedValue = {
       load: jest.fn().mockResolvedValue({ getAccumulatedValue: {} })
     }
-    makeSut(getAccumulatedValueMock)
+    const getFinancialProjection = {
+      load: jest.fn().mockResolvedValue({ getFinancialProjection: {} })
+    }
+    makeSut({ getAccumulatedValue, getFinancialProjection })
 
     const initialInvestmentInput = screen.getByLabelText(/investimento inicial/i)
     const installmentValueInput = screen.getByLabelText(/valor da parcela/i)
@@ -73,7 +98,9 @@ describe('<BasicDataForm />', () => {
     await waitFor(() => timeInput)
     await waitFor(() => interestRateInput)
 
-    expect(getAccumulatedValueMock.load).toHaveBeenCalledTimes(1)
+    expect(getAccumulatedValue.load).toHaveBeenCalledTimes(1)
+    expect(getFinancialProjection.load).toHaveBeenCalledTimes(1)
     expect(mockHandleSetAccumulatedValue).toHaveBeenCalledTimes(1)
+    expect(mockHandleSetFinancialProjection).toHaveBeenCalledTimes(1)
   })
 })

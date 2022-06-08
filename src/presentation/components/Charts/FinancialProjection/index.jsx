@@ -8,7 +8,7 @@ import { makeOptions } from './options'
 export default function FinancialProjection ({ financialProjection }) {
   return (
     <div data-testid="chart-container">
-      {!financialProjection.length && (
+      {financialProjection.length <= 0 && (
         <p className={S.noData}>
           Sem dados para mostrar
         </p>
