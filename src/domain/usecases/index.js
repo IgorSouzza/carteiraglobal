@@ -1,5 +1,6 @@
 export * from './local-calculate-interest'
 export * from './local-calculate-future-value'
 export * from './local-calculate-compound-interest'
-export * from './remote-get-accumulated-value'
 export * from './local-calculate-financial-projection'
+export * from './remote-get-accumulated-value'
+export * from './remote-get-financial-projection'
