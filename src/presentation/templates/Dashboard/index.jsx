@@ -10,7 +10,10 @@ import BasicDataForm from '../../components/BasicDataForm'
 import AccumulatedValue from '../../components/Charts/AccumulatedValue'
 import FinancialProjection from '../../components/Charts/FinancialProjection'
 
-export default function Dashboard ({ getAccumulatedValue }) {
+export default function Dashboard ({
+  getAccumulatedValue,
+  getFinancialProjection
+}) {
   const { accumulatedValue } = useAccumulatedvalue()
   const { financialProjection } = useFinancialProjection()
 
@@ -19,7 +22,10 @@ export default function Dashboard ({ getAccumulatedValue }) {
       <Header />
       <div className={S.basicDataContainer}>
         <Card title="Dados Básicos:">
-          <BasicDataForm getAccumulatedValue={getAccumulatedValue} />
+          <BasicDataForm
+            getAccumulatedValue={getAccumulatedValue}
+            getFinancialProjection={getFinancialProjection}
+          />
         </Card>
       </div>
       <div className={S.resultsContainer}>
@@ -35,5 +41,6 @@ export default function Dashboard ({ getAccumulatedValue }) {
 }
 
 Dashboard.propTypes = {
-  getAccumulatedValue: PropTypes.object
+  getAccumulatedValue: PropTypes.object,
+  getFinancialProjection: PropTypes.object
 }

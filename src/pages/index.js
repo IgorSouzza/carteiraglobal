@@ -2,7 +2,10 @@ import React from 'react'
 import { ApolloProvider } from '@apollo/client'
 
 import { apolloClient } from '../main/config'
-import { makeRemoteGetAccumulatedValue } from '../main/factories/usecases'
+import {
+  makeRemoteGetAccumulatedValue,
+  makeRemoteGetFinancialProjection
+} from '../main/factories/usecases'
 
 import {
   AccumulatedvalueProvider,
@@ -17,7 +20,10 @@ export default function Home () {
       <AccumulatedvalueProvider>
         <FinancialProjectionProvider>
           <main>
-            <DashboardTemplate getAccumulatedValue={makeRemoteGetAccumulatedValue()} />
+            <DashboardTemplate
+              getAccumulatedValue={makeRemoteGetAccumulatedValue()}
+              getFinancialProjection={makeRemoteGetFinancialProjection()}
+            />
           </main>
         </FinancialProjectionProvider>
       </AccumulatedvalueProvider>

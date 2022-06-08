@@ -41,7 +41,7 @@ export function makeOptions (data = []) {
     plotOptions: {
       series: {
         showInNavigator: true,
-        pointStart: 1,
+        pointStart: 0,
         point: {
           events: {
             mouseOver: function () {

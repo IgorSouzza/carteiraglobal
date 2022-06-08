@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import { useAccumulatedvalue } from '../../context'
+import { useAccumulatedvalue, useFinancialProjection } from '../../context'
 
 import * as S from './styles'
 
 import TextField from '../TextField'
 
-export default function BasicDataForm ({ getAccumulatedValue }) {
+export default function BasicDataForm ({
+  getAccumulatedValue,
+  getFinancialProjection
+}) {
   const [initialInvestment, setInitialInvestment] = useState()
   const [installmentValue, setInstallmentValue] = useState()
   const [time, setTime] = useState()
   const [interestRate, setInterestRate] = useState()
   const { handleSetAccumulatedValue } = useAccumulatedvalue()
+  const { handleSetFinancialProjection } = useFinancialProjection()
 
   async function handleSubmit () {
     if (!initialInvestment || !installmentValue || !time || !interestRate) {
@@ -20,13 +24,21 @@ export default function BasicDataForm ({ getAccumulatedValue }) {
     }
 
     try {
-      const response = await getAccumulatedValue.load({
+      const accumulatedValueRes = await getAccumulatedValue.load({
         initialInvestment,
         installmentValue,
         time,
         interestRate
       })
-      handleSetAccumulatedValue(response.getAccumulatedValue)
+      const financialProjectionRes = await getFinancialProjection.load({
+        initialInvestment,
+        installmentValue,
+        time,
+        interestRate
+      })
+
+      handleSetAccumulatedValue(accumulatedValueRes.getAccumulatedValue)
+      handleSetFinancialProjection(financialProjectionRes.getFinancialProjection)
     } catch (error) {
       throw new Error(error)
     }
@@ -75,5 +87,6 @@ export default function BasicDataForm ({ getAccumulatedValue }) {
 }
 
 BasicDataForm.propTypes = {
-  getAccumulatedValue: PropTypes.object
+  getAccumulatedValue: PropTypes.object,
+  getFinancialProjection: PropTypes.object
 }
