@@ -26,7 +26,7 @@ export default {
         interestRate
       })
 
-      const total = parseFloat(futureValue) + parseFloat(compoundInterest)
+      const total = futureValue + compoundInterest
 
       const interest = calculateInterest.calculate({
         total,
@@ -38,7 +38,7 @@ export default {
       const interestPercent = (interest / total) * 100
       const initialInvestmentPercent = (initialInvestment / total) * 100
       const monthlyAccumulatedPercent = (monthlyAccumulated / total) * 100
-      const saved = (total - interest).toFixed(2).toString()
+      const saved = (total - interest).toFixed(2)
 
       return {
         futureValue,
@@ -49,7 +49,7 @@ export default {
           percent: monthlyAccumulatedPercent
         },
         initialInvestment: {
-          value: initialInvestment.toFixed(2).toString(),
+          value: initialInvestment.toFixed(2),
           percent: initialInvestmentPercent
         },
         interest: {

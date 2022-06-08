@@ -13,7 +13,7 @@ describe('LocalCalculateCompoundInterest', () => {
       interestRate
     })
 
-    expect(compoundInterest).toBe('43178.50')
+    expect(compoundInterest).toBe(43178.50)
   })
 
   it('should return an Error if some field is missing', () => {

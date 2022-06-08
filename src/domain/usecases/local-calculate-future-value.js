@@ -8,10 +8,14 @@ export class LocalCalculateFutureValue {
    * @param {number} investmentProps.installmentValue - The amount that is added monthly
    * @param {number} investmentProps.time - Time in months
    * @param {number} investmentProps.interestRate - Interest rate
-   * @returns {string}
+   * @returns {number}
    */
   calculate ({ installmentValue, time, interestRate }) {
-    if (!installmentValue || !time || !interestRate) {
+    if (
+      typeof installmentValue === 'undefined' ||
+      typeof time === 'undefined' ||
+      typeof interestRate === 'undefined'
+    ) {
       throw new Error('All fields is required')
     }
 
@@ -19,6 +23,6 @@ export class LocalCalculateFutureValue {
       ((Math.pow(1 + interestRate / 100, 1 / 12) - 1) * 100) / 100
 
     const fv = installmentValue * (((Math.pow(1 + equivalentRate, time)) - 1) / equivalentRate)
-    return fv.toFixed(2).toString()
+    return parseFloat(fv.toFixed(2))
   }
 }

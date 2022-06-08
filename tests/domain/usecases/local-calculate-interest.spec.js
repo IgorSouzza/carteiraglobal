@@ -15,7 +15,7 @@ describe('LocalCalculateInterest', () => {
       time
     })
 
-    expect(interest).toBe('51.39')
+    expect(interest).toBe(51.39)
   })
 
   it('should return an Error if some field is missing', () => {

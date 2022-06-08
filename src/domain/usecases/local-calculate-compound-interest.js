@@ -8,10 +8,14 @@ export class LocalCalculateCompoundInterest {
    * @param {number} investmentProps.initialInvestment - The initial investment
    * @param {number} investmentProps.time - Time in months
    * @param {number} investmentProps.interestRate - Interest rate
-   * @returns {string}
+   * @returns {number}
    */
   calculate ({ initialInvestment, time, interestRate }) {
-    if (!initialInvestment || !time || !interestRate) {
+    if (
+      typeof initialInvestment === 'undefined' ||
+      typeof time === 'undefined' ||
+      typeof interestRate === 'undefined'
+    ) {
       throw new Error('All fields is required')
     }
 
@@ -19,6 +23,6 @@ export class LocalCalculateCompoundInterest {
       ((Math.pow(1 + interestRate / 100, 1 / 12) - 1) * 100) / 100
 
     const fv = initialInvestment * (Math.pow(1 + equivalentRate, time))
-    return fv.toFixed(2).toString()
+    return parseFloat(fv.toFixed(2))
   }
 }

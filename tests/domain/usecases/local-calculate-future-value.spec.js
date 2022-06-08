@@ -9,7 +9,7 @@ describe('LocalCalculateFutureValue', () => {
 
     const futureValue = sut.calculate({ installmentValue, time, interestRate })
 
-    expect(futureValue).toBe('180124.27')
+    expect(futureValue).toBe(180124.27)
   })
 
   it('should return an Error if some field is missing', () => {

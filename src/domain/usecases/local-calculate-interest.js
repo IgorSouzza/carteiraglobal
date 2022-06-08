@@ -9,14 +9,19 @@ export class LocalCalculateInterest {
    * @param {number} investmentProps.initialInvestment - Initial investment
    * @param {number} investmentProps.installmentValue - The amount that is added monthly
    * @param {number} investmentProps.time - Time in months
-   * @returns {string}
+   * @returns {number}
    */
   calculate ({ total, installmentValue, time, initialInvestment }) {
-    if (!installmentValue || !time || !initialInvestment) {
+    if (
+      typeof total === 'undefined' ||
+      typeof installmentValue === 'undefined' ||
+      typeof time === 'undefined' ||
+      typeof initialInvestment === 'undefined'
+    ) {
       throw new Error('All fields is required')
     }
 
     const result = total - ((installmentValue * time) + initialInvestment)
-    return result.toFixed(2).toString()
+    return parseFloat(result.toFixed(2))
   }
 }
