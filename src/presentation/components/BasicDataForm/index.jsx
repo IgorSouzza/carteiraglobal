@@ -19,7 +19,12 @@ export default function BasicDataForm ({
   const { handleSetFinancialProjection } = useFinancialProjection()
 
   async function handleSubmit () {
-    if (!initialInvestment || !installmentValue || !time || !interestRate) {
+    if (
+      typeof initialInvestment === 'undefined' ||
+      typeof installmentValue === 'undefined' ||
+      typeof time === 'undefined' ||
+      typeof interestRate === 'undefined'
+    ) {
       return
     }
 
