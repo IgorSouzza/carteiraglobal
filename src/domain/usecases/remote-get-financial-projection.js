@@ -19,7 +19,7 @@ export class RemoteGetFinancialProjection {
    * Call Adapter and returns API body
    * @param {Object} params - Params to be sent to the API
    * @param {number} params.installmentValue - The amount that is added monthly
-   * @param {number} params.installmentValue - Initial investment
+   * @param {number} params.initialInvestment - Initial investment
    * @param {number} params.time - Time in months
    * @param {number} params.interestRate - Interest rate
    * @returns {any}
