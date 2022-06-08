@@ -4,10 +4,7 @@ import PropTypes from 'prop-types'
 const FinancialProjectionContext = createContext({})
 
 export function FinancialProjectionProvider ({ children }) {
-  const [financialProjection, setFinancialProjection] = useState([
-    { name: 'Investido', color: '#868686', data: [] },
-    { name: 'Acumulado', color: '#09B682', data: [] }
-  ])
+  const [financialProjection, setFinancialProjection] = useState([])
 
   function handleSetFinancialProjection (response) {
     const formattedObject = [
