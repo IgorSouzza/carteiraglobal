@@ -11,8 +11,8 @@ export function FinancialProjectionProvider ({ children }) {
 
   function handleSetFinancialProjection (response) {
     const formattedObject = [
-      { ...response.accumulated },
-      { ...response.invested }
+      { ...response.invested },
+      { ...response.accumulated }
     ]
     setFinancialProjection(formattedObject)
   }
