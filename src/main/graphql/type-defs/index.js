@@ -1,3 +1,4 @@
 import accumulatedValueTypeDefs from './accumulated-value'
+import financialProjectionTypeDefs from './financial-projection'
 
-export default [accumulatedValueTypeDefs]
+export default [accumulatedValueTypeDefs, financialProjectionTypeDefs]
