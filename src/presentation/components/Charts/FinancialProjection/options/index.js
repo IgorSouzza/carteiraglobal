@@ -25,8 +25,9 @@ export function makeOptions (data = []) {
     },
     yAxis: {
       labels: {
-        enabled: false
+        format: 'R$ {text}'
       },
+      opposite: true,
       title: {
         text: ''
       }
