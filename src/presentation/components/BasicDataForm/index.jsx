@@ -61,7 +61,8 @@ export default function BasicDataForm ({
         placeholder="R$ 500,00"
         maskType="currency"
         message="Quanto você já economizou até hoje?"
-        onInput={(e) => setInitialInvestment(e.floatValue)}
+        onInput={(e) => setInitialInvestment(e)}
+        debounceDelay={600}
       />
       <TextField
         label="Valor da Parcela:"
@@ -69,7 +70,8 @@ export default function BasicDataForm ({
         placeholder="R$ 100,00"
         maskType="currency"
         message="Quanto você pretende poupar por mês?"
-        onInput={(e) => setInstallmentValue(e.floatValue)}
+        onInput={(e) => setInstallmentValue(e)}
+        debounceDelay={600}
       />
       <TextField
         label="Período (em meses):"
@@ -77,7 +79,8 @@ export default function BasicDataForm ({
         placeholder="12"
         maskType="number"
         message="Durante quantos meses você pretende poupar?"
-        onInput={(e) => setTime(e.floatValue)}
+        onInput={(e) => setTime(e)}
+        debounceDelay={600}
       />
       <TextField
         label="Taxa de Juros (em % a.a.):"
@@ -85,13 +88,20 @@ export default function BasicDataForm ({
         placeholder="8%"
         maskType="percentage"
         message="Qual a taxa de juros à qual o seu dinheiro vai render por ano?"
-        onInput={(e) => setInterestRate(e.floatValue)}
+        onInput={(e) => setInterestRate(e)}
+        debounceDelay={600}
       />
     </form>
   )
 }
 
 BasicDataForm.propTypes = {
-  getAccumulatedValue: PropTypes.object,
-  getFinancialProjection: PropTypes.object
+  getAccumulatedValue: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object
+  ]),
+  getFinancialProjection: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object
+  ])
 }

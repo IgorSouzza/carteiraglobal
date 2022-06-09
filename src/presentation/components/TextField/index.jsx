@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types'
 import NumberFormat from 'react-number-format'
 
+import { useDebounce } from '../../hooks'
+
 import * as S from './styles'
 
 export default function TextField ({
@@ -10,8 +12,11 @@ export default function TextField ({
   onInput,
   placeholder,
   maskType,
+  debounceDelay = 0,
   ...rest
 }) {
+  const debouncedChange = useDebounce(onInput, debounceDelay)
+
   const maskProps = {
     currency: {
       thousandSeparator: '.',
@@ -25,6 +30,10 @@ export default function TextField ({
     }
   }
 
+  function handleChange (value) {
+    debouncedChange(value)
+  }
+
   return (
     <div className={S.wrapper}>
       <label htmlFor={labelFor} className={S.label}>{label}</label>
@@ -33,7 +42,7 @@ export default function TextField ({
         <input
           id={labelFor}
           className={S.input}
-          onChange={onInput}
+          onChange={(e) => handleChange(e.target.value)}
           placeholder={placeholder}
           {...rest}
         />
@@ -43,7 +52,7 @@ export default function TextField ({
         <NumberFormat
           id={labelFor}
           className={S.input}
-          onValueChange={onInput}
+          onValueChange={(value) => handleChange(value.floatValue)}
           placeholder={placeholder}
           allowNegative={false}
           {...maskProps[maskType]}
@@ -62,5 +71,6 @@ TextField.propTypes = {
   message: PropTypes.string,
   placeholder: PropTypes.string,
   maskType: PropTypes.string,
-  onInput: PropTypes.func
+  onInput: PropTypes.func,
+  debounceDelay: PropTypes.number
 }

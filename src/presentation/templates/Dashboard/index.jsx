@@ -41,6 +41,12 @@ export default function Dashboard ({
 }
 
 Dashboard.propTypes = {
-  getAccumulatedValue: PropTypes.object,
-  getFinancialProjection: PropTypes.object
+  getAccumulatedValue: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object
+  ]),
+  getFinancialProjection: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object
+  ])
 }

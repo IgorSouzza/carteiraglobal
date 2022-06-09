@@ -20,6 +20,8 @@ jest.mock('../../../src/presentation/context/financial-projection-context', () =
   }
 })
 
+jest.useFakeTimers()
+
 const makeSut = ({
   getAccumulatedValue = { load: jest.fn() },
   getFinancialProjection = { load: jest.fn() }
@@ -62,17 +64,18 @@ describe('<BasicDataForm />', () => {
     const installmentValueInput = screen.getByLabelText(/valor da parcela/i)
     const timeInput = screen.getByLabelText(/período/i)
 
-    fireEvent.input(initialInvestmentInput, { target: { value: 10 } })
-    fireEvent.input(installmentValueInput, { target: { value: 20 } })
-    fireEvent.input(timeInput, { target: { value: 30 } })
-    await waitFor(() => initialInvestmentInput)
-    await waitFor(() => installmentValueInput)
-    await waitFor(() => timeInput)
+    await waitFor(() => {
+      fireEvent.change(initialInvestmentInput, { target: { value: 10 } })
+      fireEvent.change(installmentValueInput, { target: { value: 20 } })
+      fireEvent.change(timeInput, { target: { value: 30 } })
+    })
 
-    expect(getAccumulatedValue.load).not.toHaveBeenCalled()
-    expect(getFinancialProjection.load).not.toHaveBeenCalled()
-    expect(mockHandleSetAccumulatedValue).not.toHaveBeenCalled()
-    expect(mockHandleSetFinancialProjection).not.toHaveBeenCalled()
+    await waitFor(() => {
+      expect(getAccumulatedValue.load).not.toHaveBeenCalled()
+      expect(getFinancialProjection.load).not.toHaveBeenCalled()
+      expect(mockHandleSetAccumulatedValue).not.toHaveBeenCalled()
+      expect(mockHandleSetFinancialProjection).not.toHaveBeenCalled()
+    })
   })
 
   it('should call getAccumulatedValue and getFinancialProjection when all fields is filled', async () => {
@@ -89,18 +92,19 @@ describe('<BasicDataForm />', () => {
     const timeInput = screen.getByLabelText(/período/i)
     const interestRateInput = screen.getByLabelText(/taxa de juros/i)
 
-    fireEvent.input(initialInvestmentInput, { target: { value: 10 } })
-    fireEvent.input(installmentValueInput, { target: { value: 20 } })
-    fireEvent.input(timeInput, { target: { value: 30 } })
-    fireEvent.input(interestRateInput, { target: { value: 22 } })
-    await waitFor(() => initialInvestmentInput)
-    await waitFor(() => installmentValueInput)
-    await waitFor(() => timeInput)
-    await waitFor(() => interestRateInput)
+    await waitFor(() => {
+      fireEvent.change(initialInvestmentInput, { target: { value: 10 } })
+      fireEvent.change(installmentValueInput, { target: { value: 20 } })
+      fireEvent.change(timeInput, { target: { value: 30 } })
+      fireEvent.change(interestRateInput, { target: { value: 22 } })
+      jest.advanceTimersByTime(600)
+    })
 
-    expect(getAccumulatedValue.load).toHaveBeenCalledTimes(1)
-    expect(getFinancialProjection.load).toHaveBeenCalledTimes(1)
-    expect(mockHandleSetAccumulatedValue).toHaveBeenCalledTimes(1)
-    expect(mockHandleSetFinancialProjection).toHaveBeenCalledTimes(1)
+    await waitFor(() => {
+      expect(getAccumulatedValue.load).toHaveBeenCalledTimes(1)
+      expect(getFinancialProjection.load).toHaveBeenCalledTimes(1)
+      expect(mockHandleSetAccumulatedValue).toHaveBeenCalledTimes(1)
+      expect(mockHandleSetFinancialProjection).toHaveBeenCalledTimes(1)
+    })
   })
 })
