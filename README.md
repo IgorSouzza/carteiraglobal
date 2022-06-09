@@ -1,34 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Projeto
+Projeto feito para solucionar o [desafio proposto](https://github.com/carteiraglobal/challenge/tree/master/frontend).
 
-## Getting Started
+## Arquitetura
+O projeto foi arquiteturado com base na Clean Architecture, onde a ideia principal é isolarmos a camada de negócio de todo o resto da aplicação, além de libs externas e melhorarmos como tudo é testado.
 
-First, run the development server:
+### Camadas
+A ideia das camadas é elas serem independentes uma das outras
 
+    .
+    ├── domain          # Responsável por conter todas as regras de negócio
+    ├── infra           # Responsável por cuidar de bibliotecas externas e adaptá-las para o sistema
+    ├── main            # Responsável por conter arquivos de configurações, patterns, etc
+    └── presentation    # Responsável por renderizar a UI
+
+## Rodando o projeto
+Para rodar em modo de desenvolvimento, primeiro instale as dependências:
 ```bash
-npm run dev
-# or
+yarn install
+```
+Em seguida, execute o comando:
+```bash
 yarn dev
 ```
+Agora, basta acessar [http://localhost:3000](http://localhost:3000)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## GraphQL playground
+Para acessar o playground do GraphQL, rode o servidor como mostrado acima e acesse [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql)
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Exemplo de query
+Query que podemos adicionar no playground para obter respostas do servidor:
+```graphql
+query AccummulatedValue {
+  getAccumulatedValue(
+    initialInvestment: 10
+    installmentValue: 20
+    time: 6
+    interestRate: 8
+  ) {
+    futureValue
+    saved
+    compoundInterest
+    monthlyAccumulated {
+      value
+      percent
+    }
+    initialInvestment {
+      value
+      percent
+    }
+    interest {
+      value
+      percent
+    }
+    total
+  }
+}
+```
